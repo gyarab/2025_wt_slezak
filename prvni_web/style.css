@@ -9,9 +9,9 @@ p {
 
 .larger-text {
     font-size: larger;
-    border: 1px solid red;
+    border: 1px solid RoyalBlue;
 }
 
-.orange {
-    color: orange;
+.blue {
+    color: blue;
 }
