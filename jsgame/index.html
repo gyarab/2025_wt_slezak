@@ -24,9 +24,19 @@
             console.log('tajne cislo je', secretNum)
         }
         function checkGuess{
-            //TODO funkce
-            attempts++
+               attempts++
+               const inputEl = document.getElementById('guess')
+               const attemptsEl = document.getElementById('attempts')
+               const guess = Number(inputEl.value)
+               attemptsEl.textContent =attempts
         }
         document.getElementById("guessBtn").addEventListener('click')
+        document.getElementById("guess").addEventListener('keydown', function(en){
+            if (e.key == 'Enter'){
+                checkGuess()
+            }
+                
+        })
+        newGame()
     </script>
 </body>
