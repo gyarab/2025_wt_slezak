@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<hrml lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device,width, initilaze">
+    <title>JS Game</title>
+</head>
+<body>
+    <h1>JS Game</h1>
+    <input id="newGameBtn" type="button" value="New Game">
+    <input id="guess" type="number" name="guess" min="0">
+    <input id="guessBtn" type="button" value="Zkus"
+    <p>
+        Pocket pokusu <span id="attempts">0</span>
+    </p>
+    <script>
+        let secretNum
+        let attempts
+        //TODO funkce
+        function newGame(){
+            secretNum = Math.floor(Math.random()*20)+1
+            attempts =0
+            console.log('---NEW GAME---')
+            console.log('tajne cislo je', secretNum)
+        }
+        function checkGuess{
+               attempts++
+               const inputEl = document.getElementById('guess')
+               const attemptsEl = document.getElementById('attempts')
+               const guess = Number(inputEl.value)
+               attemptsEl.textContent =attempts
+        }
+        document.getElementById("guessBtn").addEventListener('click')
+        document.getElementById("guess").addEventListener('keydown', function(en){
+            if (e.key == 'Enter'){
+                checkGuess()
+            }
+                
+        })
+        newGame()
+    </script>
+</body>
