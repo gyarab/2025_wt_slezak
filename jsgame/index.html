@@ -1,42 +1,137 @@
 <!DOCTYPE html>
-<hrml lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device,width, initilaze">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background: #f4f4f4;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        input[type="number"], input[type="text"] {
+            font-size: 1.2rem;
+            padding: 8px;
+            width: 150px;
+            margin: 10px;
+        }
+        input[type="button"] {
+            font-size: 1.1rem;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            border: none;
+            background: #3498db;
+            color: white;
+            transition: 0.2s;
+        }
+        input[type="button"]:hover {
+            background: #2176b8;
+        }
+        input[type="button"]:disabled {
+            background: #888;
+            cursor: not-allowed;
+        }
+        #msg {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+        #attempts {
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
     <h1>JS Game</h1>
+
+    <p>Hádejte číslo mezi 1 a 20</p>
+
     <input id="newGameBtn" type="button" value="New Game">
-    <input id="guess" type="number" name="guess" min="0">
-    <input id="guessBtn" type="button" value="Zkus"
-    <p>
-        Pocket pokusu <span id="attempts">0</span>
-    </p>
+    <br><br>
+
+    <input id="guess" type="text">
+    <input id="guessBtn" type="button" value="Zkus">
+
+    <p>Pocet pokusu: <span id="attempts">0</span></p>
+
+    <p id="msg"></p>
+
     <script>
         let secretNum
         let attempts
-        //TODO funkce
-        function newGame(){
-            secretNum = Math.floor(Math.random()*20)+1
-            attempts =0
-            console.log('---NEW GAME---')
-            console.log('tajne cislo je', secretNum)
+        let gameOver = false
+
+        function newGame() {
+            secretNum = Math.floor(Math.random() * 20) + 1
+            attempts = 0
+            gameOver = false
+            document.getElementById('attempts').textContent = attempts
+            document.getElementById('msg').textContent = ""
+            document.getElementById('guessBtn').disabled = false
+            document.getElementById('guess').value = ""
         }
-        function checkGuess{
-               attempts++
-               const inputEl = document.getElementById('guess')
-               const attemptsEl = document.getElementById('attempts')
-               const guess = Number(inputEl.value)
-               attemptsEl.textContent =attempts
-        }
-        document.getElementById("guessBtn").addEventListener('click')
-        document.getElementById("guess").addEventListener('keydown', function(en){
-            if (e.key == 'Enter'){
-                checkGuess()
+
+        function checkGuess() {
+            if (gameOver) return
+
+            const val = document.getElementById('guess').value
+            const guess = Number(val)
+
+            if (val === "easteregg" || val === "egg") {
+                window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1"
+                return
             }
-                
+
+            if (isNaN(guess)) {
+                window.location.href = "https://cs.wikipedia.org/wiki/Číslo"
+                return
+            }
+
+            attempts++
+            document.getElementById('attempts').textContent = attempts
+            const msgEl = document.getElementById('msg')
+
+            if (attempts >= 10 && guess !== secretNum) {
+                window.location.href = "https://cs.wikipedia.org/wiki/Nerovnost_(matematika)"
+                return
+            }
+
+            if (guess < secretNum) {
+                msgEl.textContent = "Vyšší ↑"
+                msgEl.style.color = "#e67e22"
+            } else if (guess > secretNum) {
+                msgEl.textContent = "Nižší ↓"
+                msgEl.style.color = "#e67e22"
+            } else {
+                msgEl.textContent = "Správně!"
+                msgEl.style.color = "#27ae60"
+                gameOver = true
+                document.getElementById('guessBtn').disabled = true
+            }
+        }
+
+        document.getElementById("guessBtn").addEventListener('click', checkGuess)
+
+        document.getElementById("guess").addEventListener('keydown', function(e){
+            if (e.key === 'Enter'){
+                if (gameOver) newGame()
+                else checkGuess()
+            }
         })
+
+        document.getElementById("newGameBtn").addEventListener('click', newGame)
+
         newGame()
     </script>
 </body>
+</html>
