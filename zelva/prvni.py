@@ -15,7 +15,7 @@ def dum(a,c):
     left(90)
     forward(c)
     left(45)
-for i in range(4):
+for i in range(6):
     dum(a,c)
-    right(90)
+    right(60)
     
