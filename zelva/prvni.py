@@ -1,1 +1,21 @@
-print("balls")
+from turtle import forward, left, right
+from math import sqrt
+a = 90
+c = sqrt(2*a**2)
+def dum(a,c):
+    for i in range(4):
+        forward(a)
+        left(90)
+    left(45)
+    forward(c)
+    left(90)
+    forward(c/2)
+    left(90)
+    forward(c/2)
+    left(90)
+    forward(c)
+    left(45)
+for i in range(4):
+    dum(a,c)
+    right(90)
+    
