@@ -1,6 +1,7 @@
 from turtle import forward, left, right
 from math import sqrt
-a = 90
+from random import randint
+a = randint(30,50)
 c = sqrt(2*a**2)
 def dum(a,c):
     for i in range(4):
