@@ -16,7 +16,7 @@ def dum(a,c):
     forward(c)
     left(45)
 for i in range(6):
-    a = randint(30,40)
+    a = randint(30,90)
     c = sqrt(2*a**2)
     dum(a,c)
     right(60)
