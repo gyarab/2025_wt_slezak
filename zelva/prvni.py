@@ -1,4 +1,4 @@
-from turtle import forward, left, right
+from turtle import forward, left, right, goto
 from math import sqrt
 from random import randint
 
@@ -16,8 +16,9 @@ def dum(a,c):
     forward(c)
     left(45)
 for i in range(6):
-    a = randint(30,50)
+    a = randint(30,40)
     c = sqrt(2*a**2)
     dum(a,c)
     right(60)
+goto(0,0)#dokončí kruh "planety", aby tam nebyla mezera 
     
